@@ -1,4 +1,30 @@
-# weather-app
+# Weather Forecast App
+
+## Requirements
+
+* Provide responsive solution
+* There should be an input where the user can write the location (city, for example) they want to get info for
+* Show the weather info currently for the input location:
+  * Location (ie. Yerevan, Armenia)
+  * Current weather description (ie. raining)
+  * Current temperature
+  * Today's high temperature
+  * Today's low temperature
+* Add extra info about the current conditions on a hidden component the user can toggle the visibility:
+  * Wind Speed
+  * Humidity
+  * Pressure
+  * Sunrise/Sunset Time
+* Show basic weather info for the next 7 days on that location
+* Show basic weather info for the last 5 days on that location
+* If there's a need to make a big number of requests, make them concurrent
+* Pre-fill the input field with the user current location
+* Show the location on a map
+* Auto complete the location input as the user types
+* Lazy-load weather info
+* Deliver the solution hosted on your favourite cloud service with any appropriate changes you'd feel are relevant for a hosted solution
+* And something you can see only when run the app!
+
 
 ## Build Setup
 
