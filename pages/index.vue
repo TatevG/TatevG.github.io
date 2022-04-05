@@ -43,7 +43,7 @@
                     </v-list-item-content>
                 </v-list-item>
             </template>
-        </v-autocomplete>
+          </v-autocomplete>
         </v-row>
 
         <v-row class="justify-space-between flex-column flex-md-row">
@@ -101,28 +101,12 @@
 
           <v-col cols="12" lg="6">
             <v-card class="weather-main-data-container d-flex flex-column mt-4 mb-8" max-width="650" elevation="3" v-if="weatherData">
-              <GmapMap
-                ref="mapRef"
-                :center="{lat:locationData.lat, lng:locationData.lon}"
-                :zoom="13"
-                map-type-id="roadmap"
-                style="width: inherit; height: 280px"
-              >
-                <GmapMarker
-                  v-for="m in markers"
-                  :key="m.id"
-                  :position="m.position"
-                  :clickable="true"
-                  :draggable="true"
-                  :icon="m.icon"
-                  @click="center = m.position"
-                />
-              </GmapMap>
+              <Map :lat="locationData.lat" :lon="locationData.lon" />
             </v-card>
           </v-col>
         </v-row>
 
-        <v-switch v-if="weatherData" v-model="showAdditionalInfo" inset label="Show additional info" class="text-right"></v-switch>
+        <v-switch v-if="weatherData" v-model="showAdditionalInfo" inset label="Show additional info" class="text-right" style="width: fit-content"></v-switch>
 
         <transition
             mode="out-in"
@@ -130,6 +114,7 @@
         >
           <v-card v-if="showAdditionalInfo && weatherData" class="weather-main-data-container d-flex flex-column mx-auto mt-4 mb-8" max-width="650" elevation="3">
             <h3 class="font-weight-medium mx-4 mt-4">Additional info</h3>
+
             <v-row class="mx-4 flex-column flex-md-row">
               <v-col>
                 <v-row class="justify-space-between my-4 mx-0">
@@ -175,32 +160,32 @@
         </transition>
 
         <v-card v-if="weatherData" class="d-flex flex-column justify-space-between days-forecast-list list-complete-item my-4 px-4">
-        <v-card-title>Future 7 days forecast</v-card-title>
+          <v-card-title>Future 7 days forecast</v-card-title>
 
-        <v-card-text class="d-flex justify-space-between flex-column flex-md-row">
-          <Day
-            v-for="day in futureDaysForecast"
-            :key="day.dt"
-            :date="detDay(day.dt)"
-            :temperature="getTemperature(day.temp.day)"
-            :icon="day.weather[day.weather.length - 1].icon"
-          />
-        </v-card-text>
+          <v-card-text class="d-flex justify-space-between flex-column flex-md-row">
+            <Day
+              v-for="day in futureDaysForecast"
+              :key="day.dt"
+              :date="detDay(day.dt)"
+              :temperature="getTemperature(day.temp.day)"
+              :icon="day.weather[day.weather.length - 1].icon"
+            />
+          </v-card-text>
         </v-card>
-
-{{ pastDaysForecast.length }}
 
         <v-card v-if="weatherData" class="d-flex flex-column justify-space-between days-forecast-list list-complete-item my-4 px-4">
-        <v-card-title>Past 5 days Forecast</v-card-title>
-        <v-card-text class="d-flex justify-space-between flex-column flex-md-row ">
-          <Day
-            v-for="day in pastDaysForecast"
-            :key="day.dt"
-            :date="detDay(day.dt)"
-            :temperature="getTemperature(day.temp)"
-            :icon="day.weather[day.weather.length - 1].icon"/>
-        </v-card-text>
+          <v-card-title>Past 5 days Forecast</v-card-title>
+
+          <v-card-text class="d-flex justify-space-between flex-column flex-md-row ">
+            <Day
+              v-for="day in pastDaysForecast"
+              :key="day.dt"
+              :date="detDay(day.dt)"
+              :temperature="getTemperature(day.temp)"
+              :icon="day.weather[day.weather.length - 1].icon"/>
+          </v-card-text>
         </v-card>
+
         <NotFound v-if="showNotFound" class="mt-8"/>
       </v-col>
     </v-row>
@@ -208,11 +193,14 @@
 </template>
 
 <script>
-import Day from "~/components/common/Day";
-import NotFound from '~/components/common/NotFound';
 import axios from 'axios';
 import moment from 'moment';
 import { gmapApi } from 'vue2-google-maps';
+
+import Day from "~/components/common/Day";
+import NotFound from '~/components/common/NotFound';
+import Map from '~/components/common/Map.vue';
+
 import {
   SearchAddressByQuery,
   GetWeatherByCoordinates,
@@ -224,7 +212,8 @@ import {
 export default {
   components: {
     Day,
-    NotFound
+    NotFound,
+    Map
   },
   data() {
     return {
@@ -238,9 +227,8 @@ export default {
       pastDaysForecast: [],
       units: 'metric',
       currentDate: null,
-      markers: [],
       query: '',
-      searchResults: []
+      searchResults: [],
     };
   },
 
@@ -249,7 +237,7 @@ export default {
   },
 
   async mounted() {
-    await this.setCurrentLocationWeather();
+    // await this.setCurrentLocationWeather();
   },
   watch: {
     location() {

@@ -7,11 +7,10 @@
     </v-row>
 
     <v-row class="not-found-description">There is nothing found :'( </v-row>
-</div>
+  </div>
 </template>
 
 <script>
-
 export default {
   name:'weather-not-found',
   data() {
