@@ -21,7 +21,6 @@
 * Pre-fill the input field with the user current location
 * Show the location on a map
 * Auto complete the location input as the user types
-* Lazy-load weather info
 * Deliver the solution hosted on your favourite cloud service with any appropriate changes you'd feel are relevant for a hosted solution
 * And something you can see only when run the app!
 
