@@ -284,7 +284,7 @@
                         justify-space-between
                         days-forecast-list
                         list-complete-item
-                        my-4
+                        my-12
                         px-4
                     "
                 >
