@@ -7,7 +7,7 @@
         >
 
         <v-img
-            :src="'http://openweathermap.org/img/wn/' + icon + '.png'"
+            :src="'https://openweathermap.org/img/wn/' + icon + '.png'"
             width="100"
         />
     </v-card>
