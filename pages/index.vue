@@ -63,7 +63,7 @@
                                     <v-row class="align-center mb-4 mb-md-0">
                                         <v-img
                                             :src="
-                                                'http://openweathermap.org/img/wn/' +
+                                                'https://openweathermap.org/img/wn/' +
                                                 weatherData.weather[
                                                     weatherData.weather.length -
                                                         1
