@@ -79,12 +79,13 @@
                                                 text-h3
                                                 primary--text
                                             "
-                                            >{{
+                                        >
+                                            {{
                                                 getTemperature(
                                                     weatherData.temp.day
                                                 )
-                                            }}&#176;C</span
-                                        >
+                                            }}&#176;C
+                                        </span>
                                     </v-row>
 
                                     <v-row
@@ -94,11 +95,10 @@
                                             ml-0
                                             accent--text
                                         "
-                                        >Feels like
-                                        {{
-                                            weatherData.feels_like.day
-                                        }}&#176;C</v-row
                                     >
+                                        Feels like
+                                        {{ weatherData.feels_like.day }}&#176;C
+                                    </v-row>
                                 </v-col>
 
                                 <v-col>
@@ -314,9 +314,7 @@
 </template>
 
 <script>
-import axios from "axios";
 import moment from "moment";
-import { gmapApi } from "vue2-google-maps";
 
 import Day from "~/components/common/Day";
 import NotFound from "~/components/common/NotFound";
@@ -351,10 +349,6 @@ export default {
             query: "",
             searchResults: [],
         };
-    },
-
-    computed: {
-        google: gmapApi,
     },
 
     async mounted() {
@@ -456,7 +450,6 @@ export default {
             }
             Promise.all(promises)
                 .then((results) => {
-                    console.log(results);
                     results.map((result) =>
                         tempForecast.push(result.data.current)
                     );
