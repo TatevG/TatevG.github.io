@@ -4,6 +4,7 @@
         :close-on-content-click="false"
         :nudge-width="200"
         offset-y
+        max-height="580px"
     >
         <template v-slot:activator="{ on }">
             <v-btn large icon dark v-on="on">

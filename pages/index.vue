@@ -119,7 +119,7 @@
                                     <v-row
                                         class="justify-space-between my-4 mx-0"
                                     >
-                                        <span>Min. temp</span>
+                                        <span>Low temp.</span>
                                         <span>
                                             {{
                                                 getTemperature(
@@ -134,7 +134,7 @@
                                     <v-row
                                         class="justify-space-between my-4 mx-0"
                                     >
-                                        <span>Max. temp</span>
+                                        <span>High temp.</span>
 
                                         <span>
                                             {{
